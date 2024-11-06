@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Assignment2</string>
+    <string name="add_new_address">Add New Address</string>
+    <string name="search">Search</string>
+    <string name="find_address">Find Address</string>
+    <string name="new_address">New Address</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="address_list">Address List:</string>
+    <string name="oshawa_locationfinder">Oshawa LocationFinder</string>
+    <string name="delete_address">Delete Address</string>
+    <string name="returnText">Return</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="search_result">Search Result:</string>
 </resources>

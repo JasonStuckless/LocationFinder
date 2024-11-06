@@ -37,14 +37,18 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Set TextView to be able to scroll
         addressList = findViewById(R.id.addressList);
         addressList.setMovementMethod(new ScrollingMovementMethod());
 
+        // create DBHandler instance
         dbHandler = new DBHandler(this);
 
+        // If database is empty, propagate database
         if (dbHandler.isDatabaseEmpty()) {
             propagateAddresses();
         }
+        // Load addresses from database into TextView
         loadAddresses();
     }
 
