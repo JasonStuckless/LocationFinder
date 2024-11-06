@@ -7,6 +7,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
         loadAddresses();
     }
 
+    // On resume reload addresses into TextView to account for edits or deletions
     @Override
     protected void onResume() {
         super.onResume();
         loadAddresses();
     }
 
+    // Pull data from CSV file to create 100 entries in the database
     private void propagateAddresses() {
         InputStream is = getResources().openRawResource(R.raw.addresses);
         try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Reload address list in TextView
     private void loadAddresses() {
         addressList.setText("");
         Cursor cursor =dbHandler.getAll();
@@ -85,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Searches database for an address like value entered in corresponding EditText
     public void performSearch(View view) {
         Intent i = new Intent(this, SearchResult.class);
 
@@ -95,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    // Creates new entry in database and refreshes address list
     public void addNewAddress(View view) {
         EditText addressText = (EditText) findViewById(R.id.addressText);
         EditText latitudeText= (EditText) findViewById(R.id.latitudeText);
@@ -104,7 +110,11 @@ public class MainActivity extends AppCompatActivity {
         String latitude = String.valueOf(latitudeText.getText());
         String longitude = String.valueOf(longitudeText.getText());
 
-        dbHandler.addAddress(address, latitude, longitude);
-        loadAddresses();
+        if (address.isEmpty() || latitude.isEmpty() || longitude.isEmpty()) {
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+        } else {
+            dbHandler.addAddress(address, latitude, longitude);
+            loadAddresses();
+        }
     }
 }

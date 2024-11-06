@@ -36,12 +36,14 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Retrieves all entries from database
     public Cursor getAll() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_ADDRESSES + " ORDER BY " + COLUMN_ID + " DESC";
         return db.rawQuery(query, null);
     }
 
+    // Searches for address in database and returns if found
     public Cursor getAddress (String addressVal) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT DISTINCT * FROM " + TABLE_ADDRESSES + " WHERE " + COLUMN_ADDRESS +
@@ -49,6 +51,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
+    // Adds entry to database
     public void addAddress(String address, String latitude, String longitude) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -58,6 +61,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_ADDRESSES, null, values);
     }
 
+    // Modifies address entry in database
     public void updateAddress(int id, String address, String latitude, String longitude) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -68,11 +72,14 @@ public class DBHandler extends SQLiteOpenHelper {
                 new String[]{String.valueOf(id)});
     }
 
+    // Removes address entry from database
     public void deleteAddress(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_ADDRESSES, "id = ?", new String[]{String.valueOf(id)});
     }
 
+    // Checks if database is empty and returns true if empty
+    // Used in main activity to determine if database needs propagation
     public boolean isDatabaseEmpty() {
         SQLiteDatabase db = this.getReadableDatabase(); // Open database in read mode
         Cursor cursor = null;

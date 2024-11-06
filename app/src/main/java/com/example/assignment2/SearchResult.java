@@ -38,16 +38,20 @@ public class SearchResult extends AppCompatActivity {
             return insets;
         });
 
+        // Assign EditText fields
         addressText = (EditText) findViewById(R.id.addressText);
         latitudeText = (EditText) findViewById(R.id.latitudeText);
         longitudeText = (EditText) findViewById(R.id.longitudeText);
 
+        // Pull passed address from main activity
         Intent intent = getIntent();
         searchAddress = Objects.requireNonNull(intent.getExtras()).getString("ADDRESS");
 
+        // Search database for an address
         dbHandler = new DBHandler(this);
         Cursor cursor = dbHandler.getAddress(searchAddress);
 
+        // If entry found, display it in EditText fields, otherwise toast and return to main
         if (cursor != null && cursor.moveToFirst()) {
             id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
             address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
@@ -59,11 +63,13 @@ public class SearchResult extends AppCompatActivity {
             startActivity(i);
         }
 
+        // Put database values in EditText fields
         addressText.setText(address);
         latitudeText.setText(latitude);
         longitudeText.setText(longitude);
     }
 
+    // Modify database address values
     public void editAddress(View view) {
         address = String.valueOf(addressText.getText());
         latitude = String.valueOf(latitudeText.getText());
@@ -72,11 +78,13 @@ public class SearchResult extends AppCompatActivity {
         finish();
     }
 
+    // Delete address entry from database
     public void deleteAddress(View view) {
         dbHandler.deleteAddress(id);
         finish();
     }
 
+    // Return to main activity
     public void returnToMain(View view) {
         finish();
     }
