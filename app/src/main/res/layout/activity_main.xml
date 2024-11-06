@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#006D77"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/header_bg"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="#006D77"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/addressList"
+        android:layout_width="338dp"
+        android:layout_height="400dp"
+        android:background="@drawable/border"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:text=""
+        android:textColor="#006D77"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.28" />
+
+    <TextView
+        android:id="@+id/headerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Oshawa LocationFinder"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/addressListText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:backgroundTint="#006D77"
+        android:text="Address List:"
+        android:textColor="#006D77"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/addressList"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="338dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="144dp"
+        android:backgroundTint="#006D77"
+        android:text="Add New Address"
+        android:textSize="20sp"
+        android:onClick="addNewAddress"
+        app:layout_constraintTop_toBottomOf="@id/longitudeText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="338dp"
+        android:layout_height="56dp"
+        android:backgroundTint="#006D77"
+        android:text="Search"
+        android:textSize="20sp"
+        android:onClick="performSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchText" />
+
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:hint="Find Address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addButton"
+        tools:layout_editor_absoluteY="637dp" />
+
+    <EditText
+        android:id="@+id/addressText"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="New Address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addressList" />
+
+    <EditText
+        android:id="@+id/latitudeText"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:hint="Latitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addressText"
+        tools:layout_editor_absoluteY="637dp" />
+
+    <EditText
+        android:id="@+id/longitudeText"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:hint="Longitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/latitudeText"
+        tools:layout_editor_absoluteY="637dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
